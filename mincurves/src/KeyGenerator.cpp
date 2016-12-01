@@ -4,16 +4,16 @@
  * @author Paul Furgale
  */
 
+#include <atomic>
+
 #include <mincurves/KeyGenerator.hpp>
-#include <boost/thread.hpp>
 
 namespace curves {
 
 size_t KeyGenerator::getNextKey() {
-  static size_t key = 0;
-  static boost::mutex mutex;
-  boost::lock_guard<boost::mutex> guard(mutex);
-  return ++key;
+  static std::atomic<size_t> key(0u);
+  size_t new_key = key++;
+  return new_key;
 }
 
 
