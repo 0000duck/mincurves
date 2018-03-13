@@ -5,6 +5,8 @@ find_package(catkin_simple 0.1.0 REQUIRED)
 
 catkin_simple(ALL_DEPS_REQUIRED)
 
+include_directories(${GTSAM_INCLUDE_DIR})
+
 cs_add_library(${PROJECT_NAME} 
   src/SE3Curve.cpp
   src/DiscreteSE3Curve.cpp
